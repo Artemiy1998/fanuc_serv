@@ -4,7 +4,7 @@ import time
 def converByteToInt(data):
     udata = data.decode("utf-8")
     new_data_str = udata.split()
-    new_data_int = [int(item) for item in new_data_str]
+    new_data_int = [float(item) for item in new_data_str]
     return new_data_int
 
 def parse1(data):
@@ -57,7 +57,7 @@ def WorkToShvat(typeOfSchvat):
         client_sock.send('Schvat 4'.encode())
     time.sleep(1)
 def MoveToPoint(client_sock):
-    client_sock.send('Move'.encode())
+    client_sock.send('1085 0 940 180 0 0 '.encode())
     time.sleep(1)
 def HomePosition(sock):
     client_sock.send('Home'.encode())
@@ -77,7 +77,7 @@ TypeOfReturnCoordinate = 0
 eps = 0
 ses = 0
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind((socket.gethostbyname(socket.gethostname()), 9092))
+sock.bind(('localhost', 9092))
 sock.listen(10)
 while True:
     ses +=1
@@ -95,12 +95,14 @@ while True:
                 WorkToShvat(ControlParam)
                 MoveToPoint(client_sock)
             else:
-                HomePosition(sock)
+                HomePosition(client_sock)
                 print("Disconnect", addr_sock)
-                sock.close()
+                client_sock.close()
+
 
         elif data_list[0] == 2:#если второй меняем параметры
             parse2(data)
+
             if CoordinateSystem >4:
                 client_sock.send('Uncorrect coordinate system'.encode())
         elif data_list[0]==0:
@@ -113,4 +115,4 @@ while True:
 
 
 
-    client_sock.close()
+

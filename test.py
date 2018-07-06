@@ -80,7 +80,7 @@ ses = 0
 while True:
     ses +=1
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('localhost', 9092))
+    sock.bind(('172.17.0.3', 9092))
     sock.listen(10)
     client_sock, addr_sock = sock.accept()
     print(ses,"   ","Connect", addr_sock)

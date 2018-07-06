@@ -14,6 +14,7 @@ def dataRes(x,y,z,w,p,r,v,cntrl):
 
 
 def chek(data_float, x,y,z,w,p,r,eps):
+    flag = False
     if math.fabs(data_float[0] - x) < eps and math.fabs(data_float[1] - y) < eps and math.fabs(
         data_float[2] - z) < eps and  math.fabs(data_float[3]-w) <eps and math.fabs(data_float[4]-p) <eps and math.fabs(data_float[5]-r) <eps:
         flag = True

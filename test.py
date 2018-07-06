@@ -76,12 +76,12 @@ TypeOfMotion = 0
 TypeOfReturnCoordinate = 0
 eps = 0
 ses = 0
-
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('', 9092))
+sock.listen(10)
 while True:
     ses +=1
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('localhost', 9092))
-    sock.listen(10)
+
     client_sock, addr_sock = sock.accept()
     print(ses,"   ","Connect", addr_sock)
     while True:
@@ -113,5 +113,4 @@ while True:
 
 
 
-
-    sock.close()
+    client_sock.close()

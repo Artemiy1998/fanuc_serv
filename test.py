@@ -77,7 +77,7 @@ TypeOfReturnCoordinate = 0
 eps = 0
 ses = 0
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('', 9092))
+sock.bind((socket.gethostbyname(socket.gethostname()), 9092))
 sock.listen(10)
 while True:
     ses +=1
